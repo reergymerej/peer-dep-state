@@ -89,3 +89,47 @@ shared dependency is bundled with _another_ dependency _and_ the host, they
 will each have their own copy.
 
 
+## Use Externals
+
+If we specify peer dependencies as externals, they should not be bundled.  That
+means that only the host would have a copy.
+
+As an external, shared-dep is not included in the bundle for feature.
+If we run host, shared-dep is used once as expected.
+If we bundle host and run it, shared-dep is initialized twice.
+
+
+
+```bash
+~/code/js/peer-dep-state/host$ yarn start
+yarn run v1.3.2
+$ node ./dist/host.js
+>>> HOST >>>
+>>> shared-dep >>>, initializing
+HOST get 1234
+HOST set 200
+HOST get 200
+>>> FEATURE >>>
+>>> shared-dep >>>, initializing
+FEATURE get 1234
+FEATURE set 100
+FEATURE get 100
+HOST get 200
+HOST set 200
+HOST get 200
+✨  Done in 0.15s.
+
+~/code/js/peer-dep-state/host$ node src/index.js
+>>> HOST >>>
+>>> shared-dep >>>, initializing
+HOST get 1234
+HOST set 200
+HOST get 200
+>>> FEATURE >>>
+FEATURE get 200
+FEATURE set 100
+FEATURE get 100
+HOST get 100
+HOST set 200
+HOST get 200
+```
