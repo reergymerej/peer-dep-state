@@ -6,5 +6,8 @@ module.exports = {
   output: {
     filename: 'host.js',
     libraryTarget: 'commonjs2',
+  },
+  externals: {
+    'shared-dep': 'shared-dep',
   }
 }

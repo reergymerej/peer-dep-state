@@ -26,7 +26,7 @@ If the state persists across app, peer dep state is shared.
 ### Result
 
 ```bash
-~/code/js/peer-dep-state/host$ yarn start
+~/cude/js/peer-dep-state/host$ yarn start
 yarn run v1.3.2
 $ node ./index.js
 I am shared-dep.
@@ -66,7 +66,7 @@ of the dependency across the project.
 
 ```bash
 ~/code/js/peer-dep-state/host$ yarn start
-yarn run v1.3.2
+yarn rdevelopmentun v1.3.2
 $ node ./dist/host.js
 I am shared-dep, built by Webpack!
 initial state 1234
@@ -133,3 +133,20 @@ HOST get 100
 HOST set 200
 HOST get 200
 ```
+
+
+### Mode
+
+Depending on how **feature** is built, the dependency will either exist once or
+twice.
+
+When feature is built with `mode: 'development'`, the dependency is duplicated.
+When feature is built with `mode: 'production'`, the dependency is not duplicated.
+
+
+What if we add shared-dep to externals in host (for dev only)?
+
+That works, too!
+While not strictly an external for the host, when the feature using the shared
+peer dependency is built in dev mode, calling it an external allows it to be
+used once.  This should only be in dev mode!
