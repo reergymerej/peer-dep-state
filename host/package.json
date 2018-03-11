@@ -1,9 +1,18 @@
 {
   "name": "host",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/host.js",
   "license": "MIT",
   "scripts": {
-    "start": "node ./index.js"
+    "build": "webpack",
+    "start": "node ./dist/host.js"
+  },
+  "dependencies": {
+    "shared-dep": "*",
+    "feature": "*"
+  },
+  "devDependencies": {
+    "webpack": "^4.1.1",
+    "webpack-cli": "^2.0.11"
   }
 }

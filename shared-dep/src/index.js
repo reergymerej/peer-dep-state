@@ -1,4 +1,4 @@
-console.log('I am shared-dep.')
+console.log('I am shared-dep, built by Webpack!')
 
 let state = 1234
 console.log('initial state', state)
